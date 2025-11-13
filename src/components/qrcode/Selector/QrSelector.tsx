@@ -4,15 +4,18 @@ import type { SelectorItem } from "#/components";
 
 interface QrSelectorProps {
   items: SelectorItem[];
-  initialIndex?: number;
-  index?: number;
+  initialItem?: SelectorItem;
+  item?: SelectorItem;
 }
 
 export const QrSelector: Component<QrSelectorProps> = (props) => {
   const [activeIndex, setActiveIndex] = createSignal<number>(
-    props.initialIndex ?? 0,
+    props.items.indexOf(props.initialItem ?? props.items[0]),
   );
-  const index = createMemo((): number => props.index ?? activeIndex());
+  const index = createMemo((): number => {
+    if (props.item) return props.items.indexOf(props.item);
+    return -1;
+  });
 
   const handleClick = (
     e: Parameters<JSX.EventHandler<HTMLButtonElement, MouseEvent>>[0],
@@ -36,9 +39,12 @@ export const QrSelector: Component<QrSelectorProps> = (props) => {
       >
         <div
           class="absolute min-w-70px h-8 z-0 bg-primary opacity-20 rounded-full transform-gpu transition-all ease-in-out duration-500"
+          classList={{
+            hidden: index() === -1,
+          }}
           style={{
             width: `calc(100% / ${props.items.length})`,
-            transform: `translateX(calc(${index()} * 100%))`,
+            transform: `translateX(calc(${index() === -1 ? activeIndex() : index()} * 100%))`,
           }}
         />
         <For each={props.items}>

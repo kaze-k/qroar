@@ -73,7 +73,8 @@ export const Footer: Component = () => {
           <div class="p-4 flex justify-between items-center">
             <QrSelector
               items={items}
-              index={identify() ? 1 : 0}
+              initialItem={items[0]}
+              item={identify() ? items[1] : items[0]}
             />
 
             <div class="flex justify-between gap-4">
