@@ -4,6 +4,7 @@ import { lazy } from "solid-js";
 import type { Path } from "#/constants";
 import { path } from "@/constants";
 import { Layout } from "@/layouts";
+import { FireFoxPopupLayout } from "@/layouts/FirefoxPopupLayout";
 
 const redirect = (to: Path) => {
   const navigate = useNavigate();
@@ -58,7 +59,7 @@ export const panelRoutes: RouteDefinition[] = [
 export const popupRoutes: RouteDefinition[] = [
   {
     path: path.ROOT,
-    component: Layout,
+    component: __TARGET__ === "firefox" ? FireFoxPopupLayout : Layout,
     children: [
       {
         path: path.ROOT,
