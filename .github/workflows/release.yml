@@ -61,7 +61,6 @@ jobs:
           configuration: ".github/workflows/changelog-config.json"
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
-          fromTag: ${{ github.event.release.tag_name }}
           toTag: ${{ github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
