@@ -1,0 +1,1 @@
+export { QrSelector } from "./QrSelector";

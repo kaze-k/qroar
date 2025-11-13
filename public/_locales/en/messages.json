@@ -1,0 +1,190 @@
+{
+  "description": {
+    "message": "QR Code Browser Extension",
+    "description": "Browser extension description"
+  },
+  "notify_error": {
+    "message": "error",
+    "description": "Notification message when error occur"
+  },
+  "notify_noQRCodeDetected": {
+    "message": "No available data found",
+    "description": "Notification message when no QR code is found"
+  },
+  "notify_unableToRecognizeClipboard": {
+    "message": "Unable to recognize clipboard content",
+    "description": "Notification message when clipboard content cannot be recognized"
+  },
+  "notify_clipboardNotImageLink": {
+    "message": "Clipboard content is not an image link",
+    "description": "Notification message when clipboard content is not an image link"
+  },
+  "notify_downloadQRCodeSuccess": {
+    "message": "QR code downloaded successfully",
+    "description": "Notification message when QR code is downloaded successfully"
+  },
+  "notify_downloadQRCodeFail": {
+    "message": "Failed to download QR code",
+    "description": "Notification message when QR code download fails"
+  },
+  "notify_copyQRCodeFail": {
+    "message": "Failed to copy QR code",
+    "description": "Notification message when QR code copy fails"
+  },
+  "notify_updateCompleted": {
+    "message": "Update completed",
+    "description": "Notification message when update is finished"
+  },
+  "notify_noCurrentUrl": {
+    "message": "Unable to retrieve the current URL",
+    "description": "Notification message when the current URL cannot be retrieved"
+  },
+  "notify_syncFailed": {
+    "message": "Sync failed",
+    "description": "Notification message when synchronization fails"
+  },
+  "tip_exceedLimit": {
+    "message": "Cannot exceed 1000 bytes",
+    "description": "Tip message shown when input content exceeds 1000 bytes"
+  },
+  "tip_windowTooSmall": {
+    "message": "The window is too small. Please adjust the window size.",
+    "description": "Tip message shown when the window is too small"
+  },
+  "placeholder_input": {
+    "message": "Please enter content",
+    "description": "Placeholder shown when inputting content"
+  },
+  "placeholder_empty": {
+    "message": "No content",
+    "description": "Placeholder shown when the input is empty"
+  },
+  "placeholder_select": {
+    "message": "Please select",
+    "description": "Placeholder text when selecting an option"
+  },
+  "title_extName": {
+    "message": "Qroar",
+    "description": "Title text for the extension name"
+  },
+  "title_setup": {
+    "message": "Settings",
+    "description": "Title text for the QR code browser extension settings"
+  },
+  "title_identify": {
+    "message": "Identify",
+    "description": "Title Text for the identify QR code"
+  },
+  "title_generate": {
+    "message": "Generate",
+    "description": "Title Text for the generate QR code"
+  },
+  "title_identifyResult": {
+    "message": "Identify Result",
+    "description": "Title text for the QR code identification result"
+  },
+  "title_scanQRCode": {
+    "message": "Scan QR Code",
+    "description": "Title text for scanning the QR code"
+  },
+  "button_scan": {
+    "message": "Scan",
+    "description": "Button text for scanning the QR code"
+  },
+  "button_stop": {
+    "message": "Stop",
+    "description": "Button text for stopping scan"
+  },
+  "button_generate": {
+    "message": "Generate",
+    "description": "Button text for generating the QR code"
+  },
+  "button_identify": {
+    "message": "Identify",
+    "description": "Button text for identifying the QR code"
+  },
+  "button_copy": {
+    "message": "Copy",
+    "description": "Button text for copying"
+  },
+  "button_paste": {
+    "message": "Paste",
+    "description": "Button text for pasting"
+  },
+  "button_clear": {
+    "message": "Clear",
+    "description": "Button text for clearing"
+  },
+  "button_currentUrl": {
+    "message": "Current URL",
+    "description": "Button text for using the current page URL"
+  },
+  "button_reset": {
+    "message": "Reset Settings",
+    "description": "Button text for resetting the settings"
+  },
+  "button_searchWeb": {
+    "message": "Search Web",
+    "description": "Button text for searching the web"
+  },
+  "button_copyResult": {
+    "message": "Copy Result",
+    "description": "Button text for copying the identified result"
+  },
+  "opened_title": {
+    "message": "When Opened",
+    "description": "Title text for settings related to when the extension is opened"
+  },
+  "opened_generateCurrentPageQRCode": {
+    "message": "Generate QR Code for Current Page",
+    "description": "Option text for generating the QR code of the current page"
+  },
+  "contextMenu_title": {
+    "message": "Context Menu",
+    "description": "Title text for the context menu settings"
+  },
+  "contextMenu_addMenu": {
+    "message": "Add Context Menu",
+    "description": "Option text for adding the context menu item"
+  },
+  "contextMenu_identifyImageQRCode": {
+    "message": "Identify QR Code in this Image",
+    "description": "Option text for identifying the QR code from this image"
+  },
+  "contextMenu_generateImageQRCode": {
+    "message": "Generate QR Code from this Image",
+    "description": "Option text for generating the QR code from this image"
+  },
+  "contextMenu_generateSelectedTextQRCode": {
+    "message": "Generate QR Code from Selected Text",
+    "description": "Option text for generating the QR code from selected text"
+  },
+  "contextMenu_generatePageQRCode": {
+    "message": "Generate QR Code for this Page",
+    "description": "Option text for generating the QR code for the current page"
+  },
+  "contextMenu_generateLinkQRCode": {
+    "message": "Generate QR Code for this Link",
+    "description": "Option text for generating the QR code for this link"
+  },
+  "appearance_title": {
+    "message": "Appearance",
+    "description": "Title text for the appearance settings"
+  },
+  "appearance_followSystem": {
+    "message": "Follow System",
+    "description": "Option text for following the system theme"
+  },
+  "appearance_darkMode": {
+    "message": "Dark Mode",
+    "description": "Option text for enabling the dark theme mode"
+  },
+  "synchronization_title": {
+    "message": "Synchronization",
+    "description": "Title text for the synchronization settings"
+  },
+  "synchronization_sync": {
+    "message": "Sync Settings",
+    "description": "Option text for syncing the settings"
+  }
+}

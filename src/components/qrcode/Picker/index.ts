@@ -1,0 +1,1 @@
+export { QrImagePicker } from "./QrImagePicker";

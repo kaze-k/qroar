@@ -1,0 +1,1 @@
+export { QrLoader } from "./QrLoader";

@@ -1,0 +1,79 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version (e.g. 1.0.0)"
+        required: false
+        default: ""
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    strategy:
+      matrix:
+        node-version: [22.x]
+        pnpm-version: [10.x]
+
+    steps:
+      - name: 1. Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 2. Setup Pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ matrix.pnpm-version }}
+
+      - name: 3. Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: 4. Cache Dependencies
+        id: cache-dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: 5. Install Dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: pnpm install
+
+      - name: 6. Build
+        run: pnpm build:all
+
+      - name: 7. Generate Release Notes
+        id: notes
+        uses: mikepenz/release-changelog-builder-action@v6
+        with:
+          configuration: ".github/workflows/changelog-config.json"
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          fromTag: ${{ github.event.release.tag_name }}
+          toTag: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 8. Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: release/*.zip
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: ${{ steps.notes.outputs.changelog }}
+          draft: false
+          prerelease: false

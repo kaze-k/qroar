@@ -1,0 +1,190 @@
+{
+  "description": {
+    "message": "二維碼瀏覽器擴展",
+    "description": "瀏覽器擴展描述"
+  },
+  "notify_error": {
+    "message": "錯誤",
+    "description": "通知錯誤的通知文本"
+  },
+  "notify_noQRCodeDetected": {
+    "message": "未找到可用資料",
+    "description": "沒有識別到二維碼時的通知文本"
+  },
+  "notify_unableToRecognizeClipboard": {
+    "message": "無法識別剪貼簿內容",
+    "description": "無法識別剪貼簿內容時的通知文本"
+  },
+  "notify_clipboardNotImageLink": {
+    "message": "剪貼簿內容不是圖片連結",
+    "description": "剪貼簿內容不是圖片連結時的通知文本"
+  },
+  "notify_downloadQRCodeSuccess": {
+    "message": "下載二維碼成功",
+    "description": "下載二維碼成功時的通知文本"
+  },
+  "notify_downloadQRCodeFail": {
+    "message": "下載二維碼失敗",
+    "description": "下載二維碼失敗時的通知文本"
+  },
+  "notify_copyQRCodeFail": {
+    "message": "複製二維碼失敗",
+    "description": "複製二維碼失敗時的通知文本"
+  },
+  "notify_updateCompleted": {
+    "message": "更新完成",
+    "description": "更新完成時的通知文本"
+  },
+  "notify_noCurrentUrl": {
+    "message": "無法獲取當前網址",
+    "description": "無法獲取當前網址時的通知文本"
+  },
+  "notify_syncFailed": {
+    "message": "同步失敗",
+    "description": "同步設定操作失敗時的通知文本"
+  },
+  "tip_exceedLimit": {
+    "message": "不能超過1000個位元組",
+    "description": "輸入內容超過1000個位元組時的提示文本"
+  },
+  "tip_windowTooSmall": {
+    "message": "視窗尺寸過小，請調整視窗尺寸",
+    "description": "視窗尺寸過小時的提示文本"
+  },
+  "placeholder_input": {
+    "message": "請輸入內容",
+    "description": "輸入框輸入時的提示文本"
+  },
+  "placeholder_empty": {
+    "message": "沒有內容",
+    "description": "輸入框為空時的提示文本"
+  },
+  "placeholder_select": {
+    "message": "請選擇",
+    "description": "選擇時的提示文本"
+  },
+  "title_extName": {
+    "message": "Qroar",
+    "description": "瀏覽器擴展名稱的標題文本"
+  },
+  "title_setup": {
+    "message": "設定",
+    "description": "二維碼瀏覽器擴展設定的標題文本"
+  },
+  "title_identify": {
+    "message": "識別",
+    "description": "識別二維碼的標題文本"
+  },
+  "title_generate": {
+    "message": "生成",
+    "description": "生成二維碼的標題文本"
+  },
+  "title_identifyResult": {
+    "message": "識別結果",
+    "description": "識別二維碼結果的標題文本"
+  },
+  "title_scanQRCode": {
+    "message": "掃描二維碼",
+    "description": "掃描二維碼的標題文本"
+  },
+  "button_scan": {
+    "message": "掃碼",
+    "description": "掃描二維碼的按鈕文本"
+  },
+  "button_stop": {
+    "message": "停止",
+    "description": "停止掃描的按鈕文本"
+  },
+  "button_generate": {
+    "message": "生成",
+    "description": "生成二維碼的按鈕文本"
+  },
+  "button_identify": {
+    "message": "識別",
+    "description": "識別二維碼的按鈕文本"
+  },
+  "button_copy": {
+    "message": "複製",
+    "description": "複製的按鈕文本"
+  },
+  "button_paste": {
+    "message": "貼上",
+    "description": "貼上的按鈕文本"
+  },
+  "button_clear": {
+    "message": "清空",
+    "description": "清空的按鈕文本"
+  },
+  "button_currentUrl": {
+    "message": "當前網址",
+    "description": "當前網址的按鈕文本"
+  },
+  "button_reset": {
+    "message": "重置設定",
+    "description": "重置設定的按鈕文本"
+  },
+  "button_searchWeb": {
+    "message": "搜尋網頁",
+    "description": "搜尋網頁的按鈕文本"
+  },
+  "button_copyResult": {
+    "message": "拷貝結果",
+    "description": "拷貝識別結果的按鈕文本"
+  },
+  "opened_title": {
+    "message": "打開時",
+    "description": "打開時設定的標題文本"
+  },
+  "opened_generateCurrentPageQRCode": {
+    "message": "生成當前頁面的二維碼",
+    "description": "生成當前頁面二維碼的選項文本"
+  },
+  "contextMenu_title": {
+    "message": "右鍵選單",
+    "description": "右鍵選單設定的標題文本"
+  },
+  "contextMenu_addMenu": {
+    "message": "新增右鍵選單",
+    "description": "新增右鍵選單的選單選項文本"
+  },
+  "contextMenu_identifyImageQRCode": {
+    "message": "識別此圖片的二維碼",
+    "description": "識別此圖片的二維碼的選單選項文本"
+  },
+  "contextMenu_generateImageQRCode": {
+    "message": "生成此圖片的二維碼",
+    "description": "生成此圖片的二維碼的選單選項文本"
+  },
+  "contextMenu_generateSelectedTextQRCode": {
+    "message": "生成選中文本的二維碼",
+    "description": "生成選中文本的二維碼的選單選項文本"
+  },
+  "contextMenu_generatePageQRCode": {
+    "message": "生成此頁面二維碼",
+    "description": "生成此頁面二維碼的選單選項文本"
+  },
+  "contextMenu_generateLinkQRCode": {
+    "message": "生成此連結二維碼",
+    "description": "生成此連結二維碼的選單選項文本"
+  },
+  "appearance_title": {
+    "message": "外觀",
+    "description": "外觀設定的標題文本"
+  },
+  "appearance_followSystem": {
+    "message": "跟隨系統",
+    "description": "跟隨系統主題的設定選項文本"
+  },
+  "appearance_darkMode": {
+    "message": "深色模式",
+    "description": "深色主題模式的設定選項文本"
+  },
+  "synchronization_title": {
+    "message": "同步",
+    "description": "同步設定的標題文本"
+  },
+  "synchronization_sync": {
+    "message": "同步設定",
+    "description": "同步的設定選項文本"
+  }
+}

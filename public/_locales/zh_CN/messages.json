@@ -1,0 +1,190 @@
+{
+  "description": {
+    "message": "二维码浏览器拓展",
+    "description": "浏览器拓展描述"
+  },
+  "notify_error": {
+    "message": "错误",
+    "description": "通知错误的通知文本"
+  },
+  "notify_noQRCodeDetected": {
+    "message": "未找到可用数据",
+    "description": "没有识别到二维码时的通知文本"
+  },
+  "notify_unableToRecognizeClipboard": {
+    "message": "无法识别剪贴板内容",
+    "description": "无法识别剪贴板内容时的通知文本"
+  },
+  "notify_clipboardNotImageLink": {
+    "message": "剪贴板内容不是图片链接",
+    "description": "剪贴板内容不是图片链接时的通知文本"
+  },
+  "notify_downloadQRCodeSuccess": {
+    "message": "下载二维码成功",
+    "description": "下载二维码成功时的通知文本"
+  },
+  "notify_downloadQRCodeFail": {
+    "message": "下载二维码失败",
+    "description": "下载二维码失败时的通知文本"
+  },
+  "notify_copyQRCodeFail": {
+    "message": "复制二维码失败",
+    "description": "复制二维码失败时的通知文本"
+  },
+  "notify_updateCompleted": {
+    "message": "更新完成",
+    "description": "更新完成时的通知文本"
+  },
+  "notify_noCurrentUrl": {
+    "message": "无法获取当前网址",
+    "description": "无法获取当前网址时的通知文本"
+  },
+  "notify_syncFailed": {
+    "message": "同步失败",
+    "description": "同步设置操作失败时的通知文本"
+  },
+  "tip_exceedLimit": {
+    "message": "不能超过1000个字节",
+    "description": "输入内容超过1000个字节时的提示文本"
+  },
+  "tip_windowTooSmall": {
+    "message": "窗口尺寸过小，请调整窗口尺寸",
+    "description": "窗口尺寸过小时的提示文本"
+  },
+  "placeholder_input": {
+    "message": "请输入内容",
+    "description": "输入框输入时的提示文本"
+  },
+  "placeholder_empty": {
+    "message": "没有内容",
+    "description": "输入框为空时的提示文本"
+  },
+  "placeholder_select": {
+    "message": "请选择",
+    "description": "选择时的提示文本"
+  },
+  "title_extName": {
+    "message": "Qroar",
+    "description": "浏览器拓展名称的标题文本"
+  },
+  "title_setup": {
+    "message": "设置",
+    "description": "二维码浏览器拓展设置的标题文本"
+  },
+  "title_identify": {
+    "message": "识别",
+    "description": "识别二维码的标题文本"
+  },
+  "title_generate": {
+    "message": "生成",
+    "description": "生成二维码的标题文本"
+  },
+  "title_identifyResult": {
+    "message": "识别结果",
+    "description": "识别二维码结果的标题文本"
+  },
+  "title_scanQRCode": {
+    "message": "扫描二维码",
+    "description": "扫描二维码的标题文本"
+  },
+  "button_scan": {
+    "message": "扫码",
+    "description": "扫描二维码的按钮文本"
+  },
+  "button_stop": {
+    "message": "停止",
+    "description": "停止扫描的按钮文本"
+  },
+  "button_generate": {
+    "message": "生成",
+    "description": "生成二维码的按钮文本"
+  },
+  "button_identify": {
+    "message": "识别",
+    "description": "识别二维码的按钮文本"
+  },
+  "button_copy": {
+    "message": "拷贝",
+    "description": "复制的按钮文本"
+  },
+  "button_paste": {
+    "message": "粘贴",
+    "description": "粘贴的按钮文本"
+  },
+  "button_clear": {
+    "message": "清空",
+    "description": "清空的按钮文本"
+  },
+  "button_currentUrl": {
+    "message": "当前网址",
+    "description": "当前网址的按钮文本"
+  },
+  "button_reset": {
+    "message": "重置设置",
+    "description": "重置设置的按钮文本"
+  },
+  "button_searchWeb": {
+    "message": "搜索网页",
+    "description": "搜索网页的按钮文本"
+  },
+  "button_copyResult": {
+    "message": "拷贝结果",
+    "description": "复制识别结果的按钮文本"
+  },
+  "opened_title": {
+    "message": "打开时",
+    "description": "打开时设置的标题文本"
+  },
+  "opened_generateCurrentPageQRCode": {
+    "message": "生成当前页面的二维码",
+    "description": "生成当前页面二维码的选项文本"
+  },
+  "contextMenu_title": {
+    "message": "右键菜单",
+    "description": "右键菜单设置的标题文本"
+  },
+  "contextMenu_addMenu": {
+    "message": "添加右键菜单",
+    "description": "添加右键菜单的菜单选项文本"
+  },
+  "contextMenu_identifyImageQRCode": {
+    "message": "识别此图片的二维码",
+    "description": "识别此图片的二维码的菜单选项文本"
+  },
+  "contextMenu_generateImageQRCode": {
+    "message": "生成此图片的二维码",
+    "description": "生成此图片的二维码的菜单选项文本"
+  },
+  "contextMenu_generateSelectedTextQRCode": {
+    "message": "生成选中文本的二维码",
+    "description": "生成选中文本的二维码的菜单选项文本"
+  },
+  "contextMenu_generatePageQRCode": {
+    "message": "生成此页面二维码",
+    "description": "生成此页面二维码的菜单选项文本"
+  },
+  "contextMenu_generateLinkQRCode": {
+    "message": "生成此链接二维码",
+    "description": "生成此链接二维码的菜单选项文本"
+  },
+  "appearance_title": {
+    "message": "外观",
+    "description": "外观设置的标题文本"
+  },
+  "appearance_followSystem": {
+    "message": "跟随系统",
+    "description": "跟随系统主题的设置选项文本"
+  },
+  "appearance_darkMode": {
+    "message": "深色模式",
+    "description": "深色主题模式的设置选项文本"
+  },
+  "synchronization_title": {
+    "message": "同步",
+    "description": "同步设置的标题文本"
+  },
+  "synchronization_sync": {
+    "message": "同步设置",
+    "description": "同步的设置选项文本"
+  }
+}
