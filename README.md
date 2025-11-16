@@ -24,6 +24,8 @@ Qroar is a QR code browser extension.
 ## Download
 
 - [Github](https://github.com/kaze-k/qroar/releases)
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/agdncflkhliegkfklkiemginbgaljnkb)
+- [Firefox](https://addons.mozilla.org/zh-CN/firefox/addon/qroar/)
 
 ## License
 
