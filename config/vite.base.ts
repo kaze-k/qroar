@@ -85,7 +85,7 @@ export default (target: "firefox" | "chrome"): UserConfig =>
     ],
     resolve: {
       alias: {
-        "~": path.resolve(__dirname, "../public"),
+        "~": path.resolve(__dirname, "../"),
         "@": path.resolve(__dirname, "../src"),
         "#": path.resolve(__dirname, "../types"),
       },

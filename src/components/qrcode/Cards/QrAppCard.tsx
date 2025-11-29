@@ -2,9 +2,10 @@ import type { Component } from "solid-js";
 import Browser from "webextension-polyfill";
 import logo from "@/assets/logo.png";
 import { Link } from "@/components/common/Link";
+import pkg from "~/package.json";
 
 const VERSION = Browser.runtime.getManifest().version;
-const NAME = Browser.runtime.getManifest().name;
+const NAME = pkg.name;
 
 export const QrAppCard: Component = () => {
   return (
