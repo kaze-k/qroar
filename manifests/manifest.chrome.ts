@@ -3,7 +3,7 @@ import pkg from "../package.json";
 
 export default defineManifest({
   manifest_version: 3,
-  name: pkg.name,
+  name: "__MSG_name__",
   version: pkg.version,
   description: "__MSG_description__",
   default_locale: "en",

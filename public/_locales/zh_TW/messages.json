@@ -1,4 +1,8 @@
 {
+  "name": {
+    "message": "Qroar QR碼工具",
+    "description": "瀏覽器擴展名稱"
+  },
   "description": {
     "message": "二維碼瀏覽器擴展",
     "description": "瀏覽器擴展描述"
