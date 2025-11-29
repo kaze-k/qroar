@@ -1,4 +1,8 @@
 {
+  "name": {
+    "message": "Qroar 二维码工具",
+    "description": "浏览器拓展名称"
+  },
   "description": {
     "message": "二维码浏览器拓展",
     "description": "浏览器拓展描述"

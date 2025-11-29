@@ -1,4 +1,8 @@
 {
+  "name": {
+    "message": "Qroar QR",
+    "description": "Browser extension name"
+  },
   "description": {
     "message": "QR Code Browser Extension",
     "description": "Browser extension description"
