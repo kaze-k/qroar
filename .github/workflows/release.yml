@@ -58,7 +58,7 @@ jobs:
         id: notes
         uses: mikepenz/release-changelog-builder-action@v6
         with:
-          configuration: ".github/workflows/changelog-config.json"
+          configuration: ".github/config/changelog-config.json"
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
           toTag: ${{ github.ref_name }}
