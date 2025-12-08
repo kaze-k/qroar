@@ -151,7 +151,7 @@ export const Header: Component = () => {
           </Button>
         </div>
 
-        <Title ref={(el) => setTitleRef<HTMLElement>(el)}>{current()}</Title>
+        <Title ref={setTitleRef}>{current()}</Title>
 
         <div class="flex-1 flex justify-right">
           <Button

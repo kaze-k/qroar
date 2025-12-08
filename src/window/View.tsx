@@ -112,7 +112,7 @@ function View() {
         <Show when={result()}>
           <QrResultCard
             text={result()}
-            ref={setResultCardRef<HTMLElement>}
+            ref={setResultCardRef}
             onClose={resetResult}
           />
         </Show>
