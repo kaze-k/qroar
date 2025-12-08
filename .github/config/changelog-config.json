@@ -1,13 +1,25 @@
 {
+  "mode": "COMMIT",
+  "template": "#{{CHANGELOG}}",
   "categories": [
     {
-      "title": "✨ Features",
-      "labels": ["feat"]
+      "title": "## ✨ Features",
+      "labels": ["feat", "feature"]
     },
     {
-      "title": "🐛 Fixes",
-      "labels": ["fix"]
+      "title": "## 🐛 Fixes",
+      "labels": ["fix", "bug"]
+    },
+    {
+      "title": "## 🔧 Others",
+      "labels": ["chore", "docs", "refactor", "perf", "ci"]
     }
   ],
-  "template": "${{CHANGELOG}}"
+  "label_extractor": [
+    {
+      "pattern": "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}(\\([\\w\\-\\.]+\\))?(!)?: ([\\w ])+([\\s\\S]*)",
+      "on_property": "title",
+      "target": "$1"
+    }
+  ]
 }

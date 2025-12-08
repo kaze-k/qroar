@@ -58,6 +58,7 @@ jobs:
         id: notes
         uses: mikepenz/release-changelog-builder-action@v6
         with:
+          mode: "COMMIT"
           configuration: ".github/config/changelog-config.json"
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
