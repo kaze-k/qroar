@@ -49,7 +49,7 @@ export const QrCodeViewer: Component<QrCodeViewerProps> = (props) => {
     >
       <canvas
         class="box-border rounded-3xl glass-style animate-transform hover:scale-105"
-        ref={setEl<HTMLCanvasElement>}
+        ref={setEl}
       />
     </Show>
   );

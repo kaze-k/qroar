@@ -74,7 +74,7 @@ export const QrScanViewer: Component<QrScanViewerProps> = (props) => {
   return (
     <div class="relative w-full h-full">
       <video
-        ref={setVideoRef<HTMLVideoElement>}
+        ref={setVideoRef}
         class="absolute w-full h-full object-cover"
         autoplay
         playsinline
