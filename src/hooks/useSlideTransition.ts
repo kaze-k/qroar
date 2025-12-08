@@ -77,7 +77,8 @@ export function useSlideTransition<T>(
     const element = el();
     if (!element) return;
 
-    if (animating()) return;
+    const animate = animating();
+    if (animate) return;
     setAnimating(true);
 
     cancelAll();
