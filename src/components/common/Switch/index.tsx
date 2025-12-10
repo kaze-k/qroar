@@ -9,7 +9,7 @@ interface SwitchProps {
 
 export const Switch: Component<SwitchProps> = (props) => {
   const [internalChecked, setInternalChecked] = createSignal<boolean>(false);
-  const isControlled = (): boolean => props.checked !== undefined;
+  const isControlled = (): boolean => typeof props.checked !== "undefined";
 
   const checked = createMemo((): boolean | undefined =>
     isControlled()

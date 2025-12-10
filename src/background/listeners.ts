@@ -92,7 +92,7 @@ export const onMessageListenerCallback: Browser.Runtime.OnMessageListenerAsync =
     errorHandler(() => {
       if (sender.id !== Browser.runtime.id) return;
 
-      const msg = message as Message<MessageType, Screen>;
+      const msg = message as Message<MessageType>;
 
       const handler: SignalHandler = messageHandleMap[msg.type];
 
