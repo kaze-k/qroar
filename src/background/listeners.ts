@@ -79,22 +79,32 @@ export const onStorageChangedListenerCallback: (
 ) => void = (changes, areaName) => {
   errorHandler(async () => {
     if (areaName !== "local") return;
-    if (!changes?.[persistent.CONTEXT_MENU]) return;
 
-    const raw = changes[persistent.CONTEXT_MENU].newValue;
-    const newContextMenu: AppContextMenuStore | null = raw
-      ? JSON.parse(raw as string)
-      : null;
+    if (
+      changes?.[persistent.MENUS] &&
+      typeof changes[persistent.MENUS]?.newValue === "undefined" &&
+      typeof changes[persistent.MENUS]?.oldValue !== "undefined"
+    ) {
+      await Browser.storage.local.set({
+        [persistent.MENUS]: changes[persistent.MENUS].oldValue,
+      });
+    }
 
-    if (newContextMenu === null) return;
+    if (
+      changes?.[persistent.CONTEXT_MENU] &&
+      typeof changes[persistent.CONTEXT_MENU]?.newValue !== "undefined"
+    ) {
+      const raw = changes[persistent.CONTEXT_MENU]?.newValue;
+      const newContextMenu: AppContextMenuStore = JSON.parse(raw as string);
 
-    Object.values(contextMenuHandlerMap).forEach((handler) =>
-      handler.condition(newContextMenu)
-        ? handler.actions.create(fallback)
-        : handler.actions.remove(fallback),
-    );
+      Object.values(contextMenuHandlerMap).forEach((handler) =>
+        handler.condition(newContextMenu)
+          ? handler.actions.create(fallback)
+          : handler.actions.remove(fallback),
+      );
 
-    await iconHandler();
+      await iconHandler();
+    }
   });
 };
 

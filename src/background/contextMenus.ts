@@ -1,6 +1,7 @@
 import Browser from "webextension-polyfill";
 import type { ContextMenuId } from "#/constants";
 import { contextMenu, locale, persistent } from "@/constants";
+import type { AppContextMenuStore } from "~/types/stores";
 
 class Menus {
   private static readonly orders: ContextMenuId[] = [
@@ -11,6 +12,17 @@ class Menus {
     contextMenu.id.GENERATE_PAGE,
     contextMenu.id.GENERATE_LINK,
   ] as const;
+
+  private static readonly tranformMap: Record<
+    keyof AppContextMenuStore,
+    ContextMenuId
+  > = {
+    identifyImageQrcode: contextMenu.id.IDENTIFY_IMAGE,
+    generateImageQrcode: contextMenu.id.GENERATE_IMAGE,
+    generateSelectionQrcode: contextMenu.id.GENERATE_SELECTION,
+    generatePageQrcode: contextMenu.id.GENERATE_PAGE,
+    generateLinkQrcode: contextMenu.id.GENERATE_LINK,
+  } as const;
 
   private static readonly orderMap = Object.fromEntries(
     Menus.orders.map((id, i) => [id, i]),
@@ -79,12 +91,32 @@ class Menus {
     return items;
   }
 
-  public static init(): void {
-    this.orders.forEach((id) => this.add(id));
+  public static async init(): Promise<void> {
+    const res = await Browser.storage.local.get(persistent.CONTEXT_MENU);
+    const appContextMenu: AppContextMenuStore | null = res[
+      persistent.CONTEXT_MENU
+    ]
+      ? JSON.parse(res[persistent.CONTEXT_MENU] as string)
+      : null;
+
+    let items: ContextMenuId[] = [];
+
+    if (appContextMenu === null) items = this.orders;
+    else
+      items = Object.keys(appContextMenu)
+        .filter((k) => appContextMenu[k as keyof AppContextMenuStore])
+        .map(
+          (k) =>
+            this.tranformMap[k as keyof AppContextMenuStore] as ContextMenuId,
+        );
+
+    items.forEach((id) => this.add(id));
   }
 
   public static async update(): Promise<void> {
     const menus = await this.get();
+
+    if (menus.length === 0) return this.init();
 
     menus.forEach((id) => {
       if (id === null) return;
