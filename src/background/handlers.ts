@@ -13,21 +13,6 @@ export interface SignalHandler<
   action: Action;
 }
 
-export const installedHandlerMap: Record<
-  typeof notification.id.UPDATE,
-  SignalHandler<
-    Browser.Runtime.OnInstalledDetailsType,
-    (details: Browser.Runtime.OnInstalledDetailsType) => void
-  >
-> = {
-  [notification.id.UPDATE]: {
-    condition: (details) =>
-      details?.reason === "update" && Boolean(details?.previousVersion),
-    action: (details) =>
-      notifications.creator.updateNotice(details.previousVersion!),
-  },
-};
-
 export const contextMenuClickedHandlerMap: Record<
   Exclude<ContextMenuId, typeof contextMenu.id.SEPARATOR>,
   SignalHandler<
@@ -209,7 +194,23 @@ export const contextMenuHandlerMap: Record<
   },
 };
 
-export const setIcon = async (): Promise<void> => {
+export const installedHandler = (
+  details: Browser.Runtime.OnInstalledDetailsType,
+): void => {
+  if (details.reason === "install") {
+    contextMenus.menus.init();
+  }
+
+  if (details.reason === "update") {
+    contextMenus.menus.update();
+  }
+
+  if (details.reason === "update" && details.previousVersion) {
+    notifications.creator.updateNotice(details.previousVersion);
+  }
+};
+
+export const iconHandler = async (): Promise<void> => {
   const result = await Browser.storage.local.get(persistent.CONTEXT_MENU);
 
   const currentContextMenu: AppContextMenuStore | null = result[

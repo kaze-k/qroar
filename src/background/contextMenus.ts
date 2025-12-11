@@ -1,7 +1,6 @@
 import Browser from "webextension-polyfill";
 import type { ContextMenuId } from "#/constants";
-import type { AppContextMenuStore } from "#/stores";
-import { contextMenu, locale } from "@/constants";
+import { contextMenu, locale, persistent } from "@/constants";
 
 class Menus {
   private static readonly orders: ContextMenuId[] = [
@@ -12,17 +11,6 @@ class Menus {
     contextMenu.id.GENERATE_PAGE,
     contextMenu.id.GENERATE_LINK,
   ] as const;
-
-  private static readonly tranformMap: Record<
-    keyof AppContextMenuStore,
-    ContextMenuId
-  > = {
-    identifyImageQrcode: contextMenu.id.IDENTIFY_IMAGE,
-    generateImageQrcode: contextMenu.id.GENERATE_IMAGE,
-    generateSelectionQrcode: contextMenu.id.GENERATE_SELECTION,
-    generatePageQrcode: contextMenu.id.GENERATE_PAGE,
-    generateLinkQrcode: contextMenu.id.GENERATE_LINK,
-  } as const;
 
   private static readonly orderMap = Object.fromEntries(
     Menus.orders.map((id, i) => [id, i]),
@@ -67,28 +55,41 @@ class Menus {
     },
   };
 
-  private static menuItems: ContextMenuId[] = [];
-
   private static queue = Promise.resolve();
 
   private constructor() {}
 
-  public static setMenuItems(items: (keyof AppContextMenuStore)[]): void {
-    const tranformItems = items.map((id) => this.tranformMap[id]);
+  private static async set(items: ContextMenuId[]): Promise<boolean> {
+    if (!Array.isArray(items)) return false;
 
-    tranformItems.forEach((id) => {
-      const order = this.getOrder(id);
-      this.menuItems[order] = id;
+    await Browser.storage.local.set({
+      [persistent.MENUS]: JSON.stringify(items),
     });
 
-    if (
-      this.menuItems.includes(contextMenu.id.IDENTIFY_IMAGE) &&
-      !this.menuItems.includes(contextMenu.id.SEPARATOR) &&
-      this.menuItems.length > 2
-    ) {
-      const order = this.getOrder(contextMenu.id.SEPARATOR);
-      this.menuItems[order] = contextMenu.id.SEPARATOR;
-    }
+    return true;
+  }
+
+  private static async get(): Promise<ContextMenuId[]> {
+    const res = await Browser.storage.local.get(persistent.MENUS);
+    if (typeof res !== "object") return [];
+    if (typeof res[persistent.MENUS] === "undefined") return [];
+
+    const items: ContextMenuId[] = JSON.parse(res[persistent.MENUS] as string);
+
+    return items;
+  }
+
+  public static init(): void {
+    this.orders.forEach((id) => this.add(id));
+  }
+
+  public static async update(): Promise<void> {
+    const menus = await this.get();
+
+    menus.forEach((id) => {
+      if (id === null) return;
+      Browser.contextMenus.create(this.menuConfigs[id]);
+    });
   }
 
   public static add(
@@ -96,13 +97,15 @@ class Menus {
     fallback?: (error: unknown) => void,
   ): void {
     this.enqueue(async () => {
-      if (this.menuItems.includes(id)) return;
+      const menus = await this.get();
+
+      if (menus.includes(id)) return;
 
       const order = this.getOrder(id);
-      const menuItemsLength = this.getMenuItemsLogicalLength();
+      const menuItemsLength = this.getMenuItemsLogicalLength(menus);
 
-      if (order >= menuItemsLength - 1) this.addItem(id);
-      else await this.rebuild(id);
+      if (order >= menuItemsLength - 1) await this.addItem(menus, id);
+      else await this.rebuild(menus, id);
     }, fallback);
   }
 
@@ -110,7 +113,13 @@ class Menus {
     id: ContextMenuId,
     fallback?: (error: unknown) => void,
   ): void {
-    this.enqueue(() => this.removeItem(id), fallback);
+    this.enqueue(async () => {
+      const menus = await this.get();
+
+      if (!menus.includes(id)) return;
+
+      await this.removeItem(menus, id);
+    }, fallback);
   }
 
   private static enqueue(
@@ -124,60 +133,65 @@ class Menus {
     return this.orderMap[id];
   }
 
-  private static getMenuItemsLogicalLength(): number {
-    return this.menuItems.findLastIndex(Boolean) + 1;
+  private static getMenuItemsLogicalLength(menus: ContextMenuId[]): number {
+    return menus.findLastIndex(Boolean) + 1;
   }
 
-  private static addItem(id: ContextMenuId): void {
-    if (this.menuItems.includes(id)) return;
-
+  private static async addItem(
+    menus: ContextMenuId[],
+    id: ContextMenuId,
+  ): Promise<void> {
     if (
       id !== contextMenu.id.SEPARATOR &&
       id !== contextMenu.id.IDENTIFY_IMAGE &&
-      this.menuItems.includes(contextMenu.id.IDENTIFY_IMAGE) &&
-      !this.menuItems.includes(contextMenu.id.SEPARATOR)
+      menus.includes(contextMenu.id.IDENTIFY_IMAGE) &&
+      !menus.includes(contextMenu.id.SEPARATOR)
     )
-      this.addItem(contextMenu.id.SEPARATOR);
+      await this.addItem(menus, contextMenu.id.SEPARATOR);
 
     const config = this.menuConfigs[id];
     Browser.contextMenus.create(config);
 
     const order = this.getOrder(id);
-    this.menuItems[order] = id;
+    menus[order] = id;
+
+    await this.set(menus);
   }
 
-  private static removeItem(id: ContextMenuId): void {
-    if (!this.menuItems.includes(id)) return;
+  private static async removeItem(
+    menus: ContextMenuId[],
+    id: ContextMenuId,
+  ): Promise<void> {
+    await Browser.contextMenus.remove(id);
 
-    Browser.contextMenus
-      .remove(id)
-      .then(() => {
-        const order = this.getOrder(id);
-        delete this.menuItems[order];
-      })
-      .then(() => {
-        if (
-          (id === contextMenu.id.IDENTIFY_IMAGE &&
-            this.menuItems.includes(contextMenu.id.SEPARATOR)) ||
-          (this.getMenuItemsLogicalLength() === 2 &&
-            this.menuItems.includes(contextMenu.id.IDENTIFY_IMAGE) &&
-            this.menuItems.includes(contextMenu.id.SEPARATOR))
-        )
-          this.removeItem(contextMenu.id.SEPARATOR);
-      });
+    const order = this.getOrder(id);
+    delete menus[order];
+    await this.set(menus);
+
+    if (
+      (id === contextMenu.id.IDENTIFY_IMAGE &&
+        menus.includes(contextMenu.id.SEPARATOR)) ||
+      (this.getMenuItemsLogicalLength(menus) === 2 &&
+        menus.includes(contextMenu.id.IDENTIFY_IMAGE) &&
+        menus.includes(contextMenu.id.SEPARATOR))
+    )
+      await this.removeItem(menus, contextMenu.id.SEPARATOR);
   }
 
-  private static async rebuild(id: ContextMenuId): Promise<void> {
+  private static async rebuild(
+    menus: ContextMenuId[],
+    id: ContextMenuId,
+  ): Promise<void> {
     await Browser.contextMenus.removeAll();
 
-    const menuItems = [...this.menuItems];
-    this.menuItems = [];
+    const menuItems = [...menus];
+    menus = [];
 
     const order = this.getOrder(id);
     menuItems[order] = id;
 
     this.orders.forEach((menuId) => {
-      if (menuItems.includes(menuId)) this.addItem(menuId);
+      if (menuItems.includes(menuId)) this.addItem(menus, menuId);
     });
   }
 }
