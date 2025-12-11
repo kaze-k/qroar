@@ -4,6 +4,7 @@ export const persistent = {
   SYNC: "sync",
   CONTEXT_MENU: "context-menu",
   HISTORY: "history",
+  MENUS: "menus",
 } as const satisfies Record<string, string>;
 
 export const sessionKey = {
