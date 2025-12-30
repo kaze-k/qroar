@@ -1,5 +1,5 @@
 <div align="right">
-    <a title="中文" href="/README.zh-CN.md">中文</a>
+    <a title="English" href="/README.md">English</a>
 </div>
 
 <h1 align="center">
@@ -17,22 +17,22 @@
     </a>
 </p>
 
-Qroar is a QR code browser extension that supports QR code recognition and generation.
+Qroar 是一款支持二维码识别和生成的浏览器扩展。
 
-built with [SolidJS](https://www.solidjs.com/) + [UnoCSS](https://unocss.dev/).
+使用 [SolidJS](https://www.solidjs.com/) + [UnoCSS](https://unocss.dev/) 构建。
 
-## Supported Browsers
+## 支持浏览器
 
 - [x] [Microsoft Edge](https://www.microsoft.com/zh-cn/edge/download/)
 - [x] [Google Chrome](https://www.google.com/chrome/)
-- [x] [Firefox](http://www.firefox.com.cn/download/)(partially)
+- [x] [Firefox](http://www.firefox.com.cn/download/)（部分）
 
-## Download
+## 下载
 
 - [Github](https://github.com/kaze-k/qroar/releases)
 - [Edge](https://microsoftedge.microsoft.com/addons/detail/agdncflkhliegkfklkiemginbgaljnkb)
 - [Firefox](https://addons.mozilla.org/zh-CN/firefox/addon/qroar/)
 
-## License
+## 许可证
 
 [GPL-3.0 license](LICENSE)
